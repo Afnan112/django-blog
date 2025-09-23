@@ -1,16 +1,22 @@
 from django.shortcuts import render
 from blogs.models import Category, Blog
+from core.models import About, SocialLink
 
 
 def home(request):
     featured_posts = Blog.objects.filter(is_featured=True, status='Published').order_by('-updated_at')
-    #print(featured_posts)
 
     posts = Blog.objects.filter(is_featured=False, status='Published')
-    #print(posts)
+
+    # Fetch about as
+    try:
+        about = About.objects.get()
+    except:
+        about = None
 
     context = {
         'featured_posts' : featured_posts,
-        'posts' : posts
+        'posts' : posts,
+        'about' : about,
     }
     return render(request, 'home.html', context)
