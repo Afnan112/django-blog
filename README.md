@@ -1,1 +1,1 @@
-I'm working on Blog Web App 🔜
+I'm working on Blog Web App  using Django 🔜
